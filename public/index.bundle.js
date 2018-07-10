@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("exports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/lib/css-base.js */ \"./node_modules/css-loader/lib/css-base.js\")(false);\n// imports\n\n\n// module\nexports.push([module.i, \"\", \"\"]);\n\n// exports\n\n\n//# sourceURL=webpack:///./src/index.styl?./node_modules/css-loader!./node_modules/stylus-loader");
+eval("exports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/lib/css-base.js */ \"./node_modules/css-loader/lib/css-base.js\")(false);\n// imports\n\n\n// module\nexports.push([module.i, \"body {\\n  background: #e9e9e9;\\n}\\n#chat_container {\\n  padding: 10px;\\n  background: #4599bb;\\n  width: 30%;\\n  margin: 0 auto;\\n  height: 100vh;\\n}\\n#chat_container h4 {\\n  color: #fff;\\n  text-align: center;\\n}\\n#chat_container .message {\\n  background: #fff;\\n  padding: 5px 10px;\\n  margin: 10px 0;\\n}\\n#chat_container .message h6 {\\n  color: #888;\\n}\\n\", \"\"]);\n\n// exports\n\n\n//# sourceURL=webpack:///./src/index.styl?./node_modules/css-loader!./node_modules/stylus-loader");
 
 /***/ }),
 
@@ -382,6 +382,18 @@ eval("\n/**\n * When source maps are enabled, `style-loader` uses a link element
 
 /***/ }),
 
+/***/ "./src/components/ChatContainer.js":
+/*!*****************************************!*\
+  !*** ./src/components/ChatContainer.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar ChatContainer = function (_React$Component) {\n  _inherits(ChatContainer, _React$Component);\n\n  function ChatContainer(props) {\n    _classCallCheck(this, ChatContainer);\n\n    var _this = _possibleConstructorReturn(this, (ChatContainer.__proto__ || Object.getPrototypeOf(ChatContainer)).call(this, props));\n\n    _this.addMessage = function (e) {\n      e.preventDefault();\n      var messages = _this.state.messages;\n\n      var new_message = { name: _this.state.name, text: _this.state.new_text };\n      messages.push(new_message);\n      _this.setState({ messages: messages });\n    };\n\n    _this.onChangeMessage = function (e) {\n      _this.setState({ new_text: e.target.value });\n    };\n\n    _this.state = {\n      name: 'loading',\n      new_text: '',\n      messages: []\n    };\n    return _this;\n  }\n\n  _createClass(ChatContainer, [{\n    key: 'componentWillMount',\n    value: function componentWillMount() {\n      var name = location.search.split('=')[1];\n      if (!name) {\n        name = prompt('Enter your name-');\n        location = '/?name=' + name;\n      }\n      this.setState({ name: name });\n    }\n  }, {\n    key: 'render',\n    value: function render() {\n      return React.createElement(\n        'div',\n        { id: 'chat_container' },\n        React.createElement(\n          'h4',\n          null,\n          'Chat App - ',\n          this.state.name\n        ),\n        React.createElement('hr', null),\n        this.state.messages.map(function (message, i) {\n          return React.createElement(\n            'div',\n            { key: i, className: 'message' },\n            React.createElement(\n              'h6',\n              null,\n              message.name\n            ),\n            React.createElement(\n              'h5',\n              null,\n              message.text\n            )\n          );\n        }),\n        React.createElement(\n          'form',\n          { onSubmit: this.addMessage },\n          React.createElement('input', {\n            placeholder: 'Type Your Message...',\n            onChange: this.onChangeMessage,\n            className: 'form-control' })\n        ),\n        JSON.stringify(this.state)\n      );\n    }\n  }]);\n\n  return ChatContainer;\n}(React.Component);\n\nexports.default = ChatContainer;\n\n//# sourceURL=webpack:///./src/components/ChatContainer.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -390,7 +402,7 @@ eval("\n/**\n * When source maps are enabled, `style-loader` uses a link element
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nvar ReactDOM = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\nvar styles = __webpack_require__(/*! ./index.styl */ \"./src/index.styl\");\n\nReactDOM.render(React.createElement(\n  'h2',\n  null,\n  'Chatapp'\n), document.getElementById('app'));\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("\n\nvar _ChatContainer = __webpack_require__(/*! ./components/ChatContainer */ \"./src/components/ChatContainer.js\");\n\nvar _ChatContainer2 = _interopRequireDefault(_ChatContainer);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nvar ReactDOM = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\nvar styles = __webpack_require__(/*! ./index.styl */ \"./src/index.styl\");\n\n\nReactDOM.render(React.createElement(_ChatContainer2.default, null), document.getElementById('app'));\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 

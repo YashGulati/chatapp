@@ -1,9 +1,10 @@
 const React = require('react')
 const ReactDOM = require('react-dom')
 const styles = require('./index.styl')
+import ChatContainer from './components/ChatContainer'
 
 
 ReactDOM.render(
-  <h2>Chatapp</h2>,
+  <ChatContainer />,
   document.getElementById('app')
 );
