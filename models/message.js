@@ -1,6 +1,6 @@
 var mongoose = require('mongoose')
 var MessageSchema = new mongoose.Schema({
-  username: String,
+  name: String,
   text: String,
   time: { type: Date, default: Date.now },
 })
