@@ -16,6 +16,14 @@ export default class ChatContainer extends React.Component {
     messages.push(new_message)
     this.setState({messages})
   }
+  getMessages = () => {
+    fetch('/get-messages').then( (res) => {
+      return res.json()
+    }).then( (messages) => {
+      console.log(messages)
+      this.setState({messages})
+    })
+  }
   componentWillMount() {
     let name = location.search.split('=')[1]
     if (!name) {
@@ -23,7 +31,9 @@ export default class ChatContainer extends React.Component {
       location = '/?name='+name
     }
     this.setState({name})
+    this.getMessages()
   }
+
   onChangeMessage = (e) => {
     this.setState({new_text: e.target.value});
   }
