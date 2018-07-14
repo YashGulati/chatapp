@@ -12,9 +12,18 @@ export default class ChatContainer extends React.Component {
   addMessage = (e) => {
     e.preventDefault()
     const {messages} = this.state
-    const new_message = {name: this.state.name, text: this.state.new_text}
-    messages.push(new_message)
-    this.setState({messages})
+    const params = {name: this.state.name, text: this.state.new_text}
+    fetch('/add-message', {
+      headers: { "Content-Type": "application/json" },
+      method: 'POST',
+      body: JSON.stringify(params)
+    }).then( (res) => {
+      return res.json()
+    }).then( (res) => {
+      console.log('res');
+      console.log(res);
+      this.getMessages()
+    })
   }
   getMessages = () => {
     fetch('/get-messages').then( (res) => {
