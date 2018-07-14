@@ -10,6 +10,14 @@ app.use(bodyParser.json())
 app.use(express.static('public'))
 app.use(require('./server/routes'))
 
-app.listen(80, () => {
+var server = app.listen(80, () => {
   console.log('Server is listening on port 80...')
+})
+
+var io = require('socket.io')(server)
+
+io.on('connection', function(socket) {
+    socket.on('join', function(data) {
+        console.log(data);
+    })
 })
