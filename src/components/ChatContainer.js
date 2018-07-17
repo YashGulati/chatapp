@@ -22,6 +22,9 @@ export default class ChatContainer extends React.Component {
     }).then( (res) => {
       console.log('res');
       console.log(res);
+
+      socket.emit('server-reload-all')
+
       this.getMessages()
     })
   }
@@ -34,6 +37,9 @@ export default class ChatContainer extends React.Component {
     })
   }
   componentWillMount() {
+    socket.on('reload-messages', () => {
+      this.getMessages()
+    })
     let name = location.search.split('=')[1]
     if (!name) {
       name = prompt('Enter your name-')
@@ -68,7 +74,6 @@ export default class ChatContainer extends React.Component {
             onChange={this.onChangeMessage}
             className="form-control" />
         </form>
-        {JSON.stringify(this.state)}
       </div>
     )
   }

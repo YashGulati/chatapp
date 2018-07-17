@@ -20,4 +20,8 @@ io.on('connection', function(socket) {
     socket.on('join', function(data) {
         console.log(data);
     })
+    socket.on('server-reload-all', () => {
+      console.log('Server: I should send the reload request to all sockets.')
+      socket.broadcast.emit('reload-messages');
+    })
 })
